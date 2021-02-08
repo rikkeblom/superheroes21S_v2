@@ -763,4 +763,28 @@ const superheroes = [
     },
   },
 ];
-//Start your code here
+
+superheroes.forEach(description);
+
+function description(item) {
+  const template = document.querySelector("template").content;
+  const clone = template.cloneNode(true);
+
+  clone.querySelector("img").src = item.image;
+  clone.querySelector(".alias").textContent = item.alias;
+  clone.querySelector(
+    ".mission"
+  ).textContent = `Their mission is ${item.mission}.`;
+  clone.querySelector(".weaknesses").textContent = `${item.weaknesses}.`;
+  clone.querySelector(".enemies").textContent = item.enemies;
+  clone.querySelector(".sidekickName").textContent = item.sidekick.name;
+
+  if (item.sidekick.cape == false) {
+    clone.querySelector(".sidekickCape").textContent = " does not wear";
+  } else {
+    clone.querySelector(".sidekickCape").textContent = " wears ";
+  }
+
+  const parent = document.querySelector("main");
+  parent.appendChild(clone);
+}
